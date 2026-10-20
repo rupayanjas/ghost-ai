@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ============================================
+     Background Colors
+     ============================================ */
+  --color-bg-base: #080809;
+  --color-bg-surface: #111114;
+  --color-bg-elevated: #18181c;
+  --color-bg-subtle: #1e1e23;
+
+  /* ============================================
+     Border Colors
+     ============================================ */
+  --color-border-default: #2a2a30;
+  --color-border-subtle: #3a3a42;
+
+  /* ============================================
+     Text Colors
+     ============================================ */
+  --color-text-primary: #f0f0f4;
+  --color-text-secondary: #c0c0cc;
+  --color-text-muted: #808090;
+  --color-text-faint: #505060;
+
+  /* ============================================
+     Brand/Accent Colors
+     ============================================ */
+  --color-accent-primary: #00c8d4;
+  --color-accent-primary-dim: rgba(0, 200, 212, 0.12);
+  --color-accent-ai: #6457f9;
+  --color-accent-ai-text: #8b82ff;
+
+  /* ============================================
+     State Colors
+     ============================================ */
+  --color-state-error: #ff4d4f;
+  --color-state-success: #34d399;
+  --color-state-warning: #fbbf24;
+
+  /* ============================================
+     Font Families
+     ============================================ */
+  --font-family-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* ============================================
+     shadcn/ui Semantic Tokens (Dark Mode)
+     ============================================ */
+  --color-background: #080809;
+  --color-foreground: #f0f0f4;
+  --color-card: #111114;
+  --color-card-foreground: #f0f0f4;
+  --color-popover: #18181c;
+  --color-popover-foreground: #f0f0f4;
+  --color-primary: #00c8d4;
+  --color-primary-foreground: #080809;
+  --color-secondary: #1e1e23;
+  --color-secondary-foreground: #f0f0f4;
+  --color-muted: #1e1e23;
+  --color-muted-foreground: #808090;
+  --color-accent: #18181c;
+  --color-accent-foreground: #00c8d4;
+  --color-destructive: #ff4d4f;
+  --color-destructive-foreground: #f0f0f4;
+  --color-border: #2a2a30;
+  --color-input: #2a2a30;
+  --color-ring: #00c8d4;
+  --radius: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border-default;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-bg-base text-text-primary font-sans antialiased;
+  }
 }

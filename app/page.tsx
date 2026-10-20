@@ -1,69 +1,231 @@
-import Image from "next/image";
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sparkles, Code, Palette } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex min-h-screen items-center justify-center bg-bg-base p-8">
+      <div className="max-w-5xl mx-auto space-y-8 w-full">
+        {/* Hero */}
+        <div className="text-center space-y-4">
+          <h1 className="text-5xl font-bold text-text-primary">Ghost AI</h1>
+          <p className="text-xl text-text-secondary">
+            Real-time collaborative system design workspace
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        {/* Main Content Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-accent-primary" />
+              Design System Verification
+            </CardTitle>
+            <CardDescription>
+              Testing all shadcn/ui components with the dark theme
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Tabs Demo */}
+            <Tabs defaultValue="components" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="components">
+                  <Code className="h-4 w-4 mr-2" />
+                  Components
+                </TabsTrigger>
+                <TabsTrigger value="colors">
+                  <Palette className="h-4 w-4 mr-2" />
+                  Colors
+                </TabsTrigger>
+                <TabsTrigger value="forms">Forms</TabsTrigger>
+              </TabsList>
+
+              {/* Components Tab */}
+              <TabsContent value="components" className="space-y-4 mt-4">
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Button Variants
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Button>Default</Button>
+                    <Button variant="secondary">Secondary</Button>
+                    <Button variant="outline">Outline</Button>
+                    <Button variant="ghost">Ghost</Button>
+                    <Button variant="link">Link</Button>
+                    <Button variant="destructive">Destructive</Button>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Dialog Component
+                  </h3>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline">Open Dialog</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Dialog Title</DialogTitle>
+                        <DialogDescription>
+                          This is a dialog component rendered with our dark
+                          theme tokens.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4 py-4">
+                        <p className="text-sm text-text-secondary">
+                          All components inherit the design system colors and
+                          maintain consistency.
+                        </p>
+                        <Button className="w-full">Confirm</Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Scroll Area
+                  </h3>
+                  <ScrollArea className="h-[200px] w-full rounded-xl border border-border-default p-4">
+                    <div className="space-y-2">
+                      {Array.from({ length: 20 }, (_, i) => (
+                        <div
+                          key={i}
+                          className="text-sm text-text-secondary border-b border-border-subtle pb-2"
+                        >
+                          Scroll item {i + 1} — Testing scroll behavior
+                        </div>
+                      ))}
+                    </div>
+                  </ScrollArea>
+                </div>
+              </TabsContent>
+
+              {/* Colors Tab */}
+              <TabsContent value="colors" className="space-y-4 mt-4">
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Background Surfaces
+                  </h3>
+                  <div className="grid grid-cols-4 gap-3">
+                    <div className="bg-bg-base border border-border-subtle rounded-xl p-4 text-center">
+                      <div className="text-xs text-text-muted">Base</div>
+                    </div>
+                    <div className="bg-bg-surface border border-border-subtle rounded-xl p-4 text-center">
+                      <div className="text-xs text-text-muted">Surface</div>
+                    </div>
+                    <div className="bg-bg-elevated border border-border-subtle rounded-xl p-4 text-center">
+                      <div className="text-xs text-text-muted">Elevated</div>
+                    </div>
+                    <div className="bg-bg-subtle border border-border-subtle rounded-xl p-4 text-center">
+                      <div className="text-xs text-text-muted">Subtle</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Accent & State Colors
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Card className="bg-accent-primary-dim border-accent-primary">
+                      <CardContent className="pt-6">
+                        <div className="text-accent-primary font-medium">
+                          Brand Accent
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card className="border-accent-ai">
+                      <CardContent className="pt-6">
+                        <div className="text-accent-ai-text font-medium">
+                          AI Accent
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card className="border-state-error">
+                      <CardContent className="pt-6">
+                        <div className="text-state-error font-medium">
+                          Error
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card className="border-state-success">
+                      <CardContent className="pt-6">
+                        <div className="text-state-success font-medium">
+                          Success
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Forms Tab */}
+              <TabsContent value="forms" className="space-y-4 mt-4">
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
+                    Form Components
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium text-text-primary mb-2 block">
+                        Input Field
+                      </label>
+                      <Input placeholder="Enter some text..." />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-text-primary mb-2 block">
+                        Textarea
+                      </label>
+                      <Textarea
+                        placeholder="Enter multiple lines..."
+                        rows={4}
+                      />
+                    </div>
+                    <Button className="w-full">Submit Form</Button>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+
+        {/* Typography Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Typography</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <p className="font-sans text-text-primary">
+              UI text — Geist Sans
+            </p>
+            <p className="font-mono text-text-secondary text-sm">
+              Code/mono — Geist Mono
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
